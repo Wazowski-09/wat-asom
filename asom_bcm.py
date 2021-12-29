@@ -42,7 +42,6 @@ GPIO.setup(RELAIS_3_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
 def my_write_handler(value):
     print('Current V1 value: {}'.format(value[0]))
     x1 = format(value[0])
-    print(type(x1))
     if x1 == '1':
         GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
         print("relay1-work")
@@ -52,9 +51,8 @@ def my_write_handler(value):
 
 @blynk.VIRTUAL_WRITE(2)
 def my_write_handler(value):
-    print('Current V2 value: {}'.format(value))
-    x2 = format(value)
-    print(type(x2))
+    print('Current V2 value: {}'.format(value[0]))
+    x2 = format(value[0])
     if str(x2) == "1":
         GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
         print("relay1-work")
@@ -64,8 +62,8 @@ def my_write_handler(value):
 
 @blynk.VIRTUAL_WRITE(3)
 def my_write_handler(value):
-    print('Current V3 value: {}'.format(value))
-    x3 = format(value)
+    print('Current V3 value: {}'.format(value[0]))
+    x3 = format(value[0])
     if x3 is "1":
         GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
         print("relay1-work")
