@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
-
+import socket
+from gpiozero import CPUTemperature
 import BlynkLib
 
 # Initialize Blynk
@@ -84,4 +85,17 @@ def my_write_handler(value):
         print("relay1-not-work")
 
 while True:
-    blynk.run() 
+    blynk.run()
+    testIP = "8.8.8.8"
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect((testIP, 0))
+    ipaddr = s.getsockname()[0]
+    host = socket.gethostname()
+    cpu = CPUTemperature()
+    blynk.virtual_write(5, str(ipaddr))
+    blynk.virtual_write(6, str(host))
+    blynk.virtual_write(7, "Temp CPU : " + str(cpu.temperature) + " ํC")
+    blynk.virtual_write(8, cpu.temperature)
+    print(cpu.temperature)
+    print ("IP:", ipaddr, " Host:", host)
+    time.sleep(5)
