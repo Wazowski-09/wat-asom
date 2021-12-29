@@ -44,9 +44,13 @@ def my_write_handler(value):
     x1 = format(value[0])
     if x1 == '1':
         GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
+        blynk.virtual_write(16, 0)
+        blynk.virtual_write(15, 255)
         print("relay1-work")
     else:
         GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
+        blynk.virtual_write(15, 0)
+        blynk.virtual_write(16, 255)
         print("relay1-not-work")
 
 @blynk.VIRTUAL_WRITE(2)
@@ -55,9 +59,13 @@ def my_write_handler(value):
     x2 = format(value[0])
     if str(x2) == "1":
         GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
+        blynk.virtual_write(12, 0)
+        blynk.virtual_write(11, 255)
         print("relay1-work")
     else:
         GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
+        blynk.virtual_write(11, 0)
+        blynk.virtual_write(12, 255)
         print("relay1-not-work")
 
 @blynk.VIRTUAL_WRITE(3)
@@ -66,13 +74,13 @@ def my_write_handler(value):
     x3 = format(value[0])
     if x3 is "1":
         GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
-        blynk.virtual_write(16, 0)
-        blynk.virtual_write(15, 255)
+        blynk.virtual_write(14, 0)
+        blynk.virtual_write(13, 255)
         print("relay1-work")
     else:
         GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
-        blynk.virtual_write(15, 0)
-        blynk.virtual_write(16, 255)
+        blynk.virtual_write(13, 0)
+        blynk.virtual_write(14, 255)
         print("relay1-not-work")
 
 while True:
