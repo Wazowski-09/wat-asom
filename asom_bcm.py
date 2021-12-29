@@ -24,12 +24,12 @@ GPIO.setup(RELAIS_3_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
 # GPIO.setup(RELAIS_2_GPIO, GPIO.OUT, initial = GPIO.HIGH) # GPIO Assign mode
 # GPIO.setup(RELAIS_3_GPIO, GPIO.OUT, initial = GPIO.HIGH) # GPIO Assign mode
 
-@blynk.on("connected")
-def blynk_connected():
-    print("Updating values from the server...")
-    blynk.sync_virtual(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-                       13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36)
-    print("status OK")
+# @blynk.on("connected")
+# def blynk_connected():
+#     print("Updating values from the server...")
+#     blynk.sync_virtual(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+#                        13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36)
+#     print("status OK")
 
 @blynk.on("V1")
 def v1_write_handler(value):
