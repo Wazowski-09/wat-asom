@@ -29,14 +29,6 @@ except:
     config = BlynkEdgent.provision(BLYNK_DEVICE_NAME, BLYNK_TEMPLATE_ID, BLYNK_FIRMWARE_VERSION)
     needToSave = True
 
-def reset_config():
-    if os.path.exists("config.json"):
-        print("Resetting configuration")
-        os.remove("config.json")
-        # Restart
-        os.execv(sys.executable, ['python3'] + sys.argv)
-        sys.exit(0)
-
 @blynk.on("connected")
 def blynk_connected(ping):
     print('Blynk ready. Ping:', ping, 'ms')
