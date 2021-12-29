@@ -2,11 +2,7 @@ import RPi.GPIO as GPIO
 import BlynkLib
 import time
 
-BLYNK_TEMPLATE_ID = "TMPLaiUHrgaT"
-BLYNK_DEVICE_NAME = "Quickstart Template"
-BLYNK_AUTH_TOKEN = "p6nnRTzcz6dQPYwZ0nZ1d4ppE6ts4ahC"
-
-BLYNK_AUTH = BLYNK_AUTH_TOKEN
+BLYNK_AUTH = 'eYCqFwdwVKD81qKjL_8Lr0pM3vHQsMdc'
 blynk = BlynkLib.Blynk(BLYNK_AUTH)
 
 GPIO.setmode(GPIO.BCM) # GPIO Numbers instead of board numbers
