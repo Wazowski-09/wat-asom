@@ -90,7 +90,6 @@ while True:
     
     t = time.time()
     if t - tmr_start_time > 5:
-        print("1 sec elapsed, sending data to the server...")
         testIP = "8.8.8.8"
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect((testIP, 0))
@@ -103,4 +102,4 @@ while True:
         blynk.virtual_write(8, cpu.temperature)
         print(cpu.temperature)
         print ("IP:", ipaddr, " Host:", host)
-        tmr_start_time += 1
+        tmr_start_time += 5
