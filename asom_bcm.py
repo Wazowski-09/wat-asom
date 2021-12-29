@@ -12,7 +12,7 @@ BLYNK_TEMPLATE_ID = "TMPLaiUHrgaT"
 BLYNK_DEVICE_NAME = "Quickstart Template"
 BLYNK_AUTH_TOKEN = "p6nnRTzcz6dQPYwZ0nZ1d4ppE6ts4ahC"
 
-blynk = BlynkLib.Blynk(BLYNK_AUTH_TOKEN,
+blynk = BlynkLib.Blynk(config['p6nnRTzcz6dQPYwZ0nZ1d4ppE6ts4ahC'],
                        tmpl_id  = BLYNK_TEMPLATE_ID,
                        fw_ver   = BLYNK_FIRMWARE_VERSION)
 
