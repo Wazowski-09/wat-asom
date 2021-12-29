@@ -43,7 +43,7 @@ def my_write_handler(value):
     print('Current V1 value: {}'.format(value[0]))
     x1 = format(value)
     print(type(x1))
-    if x1 == "1":
+    if x1 == '1':
         GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
         print("relay1-work")
     else:
