@@ -83,9 +83,8 @@ def my_write_handler(value):
         blynk.virtual_write(13, 0)
         blynk.virtual_write(14, 255)
         print("relay1-not-work")
-
-while True:
-    blynk.run()
+@blynk.VIRTUAL_READ(4)
+def my_read_handler():
     testIP = "8.8.8.8"
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect((testIP, 0))
@@ -98,4 +97,6 @@ while True:
     blynk.virtual_write(8, cpu.temperature)
     print(cpu.temperature)
     print ("IP:", ipaddr, " Host:", host)
-    time.sleep(5)
+    
+while True:
+    blynk.run()
