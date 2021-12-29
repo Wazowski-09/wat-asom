@@ -21,13 +21,8 @@ RELAIS_1_GPIO = 2
 RELAIS_2_GPIO = 3
 RELAIS_3_GPIO = 4
 
-try:
-    with open("config.json") as jsonFile:
-        config = json.load(jsonFile)
-    needToSave = False
-except:
-    config = BlynkEdgent.provision(BLYNK_DEVICE_NAME, BLYNK_TEMPLATE_ID, BLYNK_FIRMWARE_VERSION)
-    needToSave = True
+config = BlynkEdgent.provision(BLYNK_DEVICE_NAME, BLYNK_TEMPLATE_ID, BLYNK_FIRMWARE_VERSION)
+needToSave = True
 
 @blynk.on("connected")
 def blynk_connected(ping):
