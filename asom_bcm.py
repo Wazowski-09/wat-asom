@@ -94,7 +94,7 @@ while True:
     cpu = CPUTemperature()
     blynk.virtual_write(5, str(ipaddr))
     blynk.virtual_write(6, str(host))
-    blynk.virtual_write(7, "Temp CPU : " + str(cpu.temperature) + " ํC")
+    blynk.virtual_write(7, "Temp CPU : " + str(cpu.temperature) + " C")
     blynk.virtual_write(8, cpu.temperature)
     print(cpu.temperature)
     print ("IP:", ipaddr, " Host:", host)
