@@ -4,7 +4,7 @@ import socket
 from gpiozero import CPUTemperature
 import BlynkLib
 
-time.sleep(60)
+time.sleep(40)
 
 # Initialize Blynk
 blynk = BlynkLib.Blynk('eYCqFwdwVKD81qKjL_8Lr0pM3vHQsMdc')
