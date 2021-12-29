@@ -75,7 +75,7 @@ def my_write_handler(value):
 def my_write_handler(value):
     print('Current V3 value: {}'.format(value[0]))
     x3 = format(value[0])
-    if x3 is "1":
+    if x3 == "1":
         GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
         blynk.virtual_write(14, 0)
         blynk.virtual_write(13, 255)
