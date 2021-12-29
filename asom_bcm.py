@@ -83,18 +83,24 @@ def my_write_handler(value):
         blynk.virtual_write(13, 0)
         blynk.virtual_write(14, 255)
         print("relay1-not-work")
-    
+        
+tmr_start_time = time.time()
 while True:
     blynk.run()
-    testIP = "8.8.8.8"
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.connect((testIP, 0))
-    ipaddr = s.getsockname()[0]
-    host = socket.gethostname()
-    cpu = CPUTemperature()
-    blynk.virtual_write(5, str(ipaddr))
-    blynk.virtual_write(6, str(host))
-    blynk.virtual_write(7, "Temp CPU : " + str(cpu.temperature) + " C")
-    blynk.virtual_write(8, cpu.temperature)
-    print(cpu.temperature)
-    print ("IP:", ipaddr, " Host:", host)
+    
+    t = time.time()
+    if t - tmr_start_time > 5:
+        print("1 sec elapsed, sending data to the server...")
+        testIP = "8.8.8.8"
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect((testIP, 0))
+        ipaddr = s.getsockname()[0]
+        host = socket.gethostname()
+        cpu = CPUTemperature()
+        blynk.virtual_write(5, str(ipaddr))
+        blynk.virtual_write(6, str(host))
+        blynk.virtual_write(7, "Temp CPU : " + str(cpu.temperature) + " C")
+        blynk.virtual_write(8, cpu.temperature)
+        print(cpu.temperature)
+        print ("IP:", ipaddr, " Host:", host)
+        tmr_start_time += 1
