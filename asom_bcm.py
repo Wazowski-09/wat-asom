@@ -4,6 +4,9 @@ import socket
 from gpiozero import CPUTemperature
 import BlynkLib
 
+GPIO.setmode(GPIO.BCM) # GPIO Numbers instead of board numbers
+GPIO.setwarnings(False)
+
 time.sleep(40)
 
 # Initialize Blynk
@@ -18,9 +21,6 @@ blynk = BlynkLib.Blynk('eYCqFwdwVKD81qKjL_8Lr0pM3vHQsMdc')
 # def my_read_handler():
 #     # this widget will show some time in seconds..
 #     blynk.virtual_write(2, int(time.time()))
-
-GPIO.setmode(GPIO.BCM) # GPIO Numbers instead of board numbers
-GPIO.setwarnings(False)
 
 RELAIS_1_GPIO = 2
 RELAIS_2_GPIO = 3
