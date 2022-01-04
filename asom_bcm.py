@@ -7,19 +7,19 @@ import BlynkLib
 GPIO.setmode(GPIO.BCM) # GPIO Numbers instead of board numbers
 GPIO.setwarnings(False)
 
+# GPIO.setup(RELAIS_1_GPIO, GPIO.OUT, initial = GPIO.HIGH) # GPIO Assign mode
+# GPIO.setup(RELAIS_2_GPIO, GPIO.OUT, initial = GPIO.HIGH) # GPIO Assign mode
+# GPIO.setup(RELAIS_3_GPIO, GPIO.OUT, initial = GPIO.HIGH) # GPIO Assign mode
+
+time.sleep(40)
+
 RELAIS_1_GPIO = 2
 RELAIS_2_GPIO = 3
 RELAIS_3_GPIO = 4
 
-# GPIO.setup(RELAIS_1_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
-# GPIO.setup(RELAIS_2_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
-# GPIO.setup(RELAIS_3_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
-
-GPIO.setup(RELAIS_1_GPIO, GPIO.OUT, initial = GPIO.HIGH) # GPIO Assign mode
-GPIO.setup(RELAIS_2_GPIO, GPIO.OUT, initial = GPIO.HIGH) # GPIO Assign mode
-GPIO.setup(RELAIS_3_GPIO, GPIO.OUT, initial = GPIO.HIGH) # GPIO Assign mode
-
-time.sleep(40)
+GPIO.setup(RELAIS_1_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
+GPIO.setup(RELAIS_2_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
+GPIO.setup(RELAIS_3_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
 
 # Initialize Blynk
 blynk = BlynkLib.Blynk('eYCqFwdwVKD81qKjL_8Lr0pM3vHQsMdc')
