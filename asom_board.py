@@ -1,7 +1,29 @@
 import RPi.GPIO as GPIO
 import time
-
+import socket
+from gpiozero import CPUTemperature
 import BlynkLib
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False)
+
+# RELAIS_1_GPIO = 2
+# RELAIS_2_GPIO = 3
+# RELAIS_3_GPIO = 4
+
+# GPIO.setup(RELAIS_1_GPIO, GPIO.OUT, initial = GPIO.HIGH) # GPIO Assign mode
+# GPIO.setup(RELAIS_2_GPIO, GPIO.OUT, initial = GPIO.HIGH) # GPIO Assign mode
+# GPIO.setup(RELAIS_3_GPIO, GPIO.OUT, initial = GPIO.HIGH) # GPIO Assign mode
+
+time.sleep(40)
+
+RELAIS_1_GPIO = 3
+RELAIS_2_GPIO = 5
+RELAIS_3_GPIO = 7
+
+GPIO.setup(RELAIS_1_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
+GPIO.setup(RELAIS_2_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
+GPIO.setup(RELAIS_3_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
 
 # Initialize Blynk
 blynk = BlynkLib.Blynk('eYCqFwdwVKD81qKjL_8Lr0pM3vHQsMdc')
@@ -16,25 +38,6 @@ blynk = BlynkLib.Blynk('eYCqFwdwVKD81qKjL_8Lr0pM3vHQsMdc')
 #     # this widget will show some time in seconds..
 #     blynk.virtual_write(2, int(time.time()))
 
-GPIO.setmode(GPIO.BOARD)
-GPIO.setwarnings(False)
-
-# RELAIS_1_GPIO = 2
-# RELAIS_2_GPIO = 3
-# RELAIS_3_GPIO = 4
-
-RELAIS_1_GPIO = 3
-RELAIS_2_GPIO = 5
-RELAIS_3_GPIO = 7
-
-GPIO.setup(RELAIS_1_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
-GPIO.setup(RELAIS_2_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
-GPIO.setup(RELAIS_3_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
-
-# GPIO.setup(RELAIS_1_GPIO, GPIO.OUT, initial = GPIO.HIGH) # GPIO Assign mode
-# GPIO.setup(RELAIS_2_GPIO, GPIO.OUT, initial = GPIO.HIGH) # GPIO Assign mode
-# GPIO.setup(RELAIS_3_GPIO, GPIO.OUT, initial = GPIO.HIGH) # GPIO Assign mode
-
 # @blynk.on("connected")
 # def blynk_connected():
 #     print("Updating values from the server...")
@@ -48,9 +51,13 @@ def my_write_handler(value):
     x1 = format(value[0])
     if x1 == '1':
         GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
+        blynk.virtual_write(16, 0)
+        blynk.virtual_write(15, 255)
         print("relay1-work")
     else:
         GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
+        blynk.virtual_write(15, 0)
+        blynk.virtual_write(16, 255)
         print("relay1-not-work")
 
 @blynk.VIRTUAL_WRITE(2)
@@ -59,21 +66,46 @@ def my_write_handler(value):
     x2 = format(value[0])
     if str(x2) == "1":
         GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
+        blynk.virtual_write(12, 0)
+        blynk.virtual_write(11, 255)
         print("relay1-work")
     else:
         GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
+        blynk.virtual_write(11, 0)
+        blynk.virtual_write(12, 255)
         print("relay1-not-work")
 
 @blynk.VIRTUAL_WRITE(3)
 def my_write_handler(value):
     print('Current V3 value: {}'.format(value[0]))
     x3 = format(value[0])
-    if x3 is "1":
+    if x3 == "1":
         GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
+        blynk.virtual_write(14, 0)
+        blynk.virtual_write(13, 255)
         print("relay1-work")
     else:
         GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
+        blynk.virtual_write(13, 0)
+        blynk.virtual_write(14, 255)
         print("relay1-not-work")
-
+        
+tmr_start_time = time.time()
 while True:
-    blynk.run() 
+    blynk.run()
+    
+    t = time.time()
+    if t - tmr_start_time > 5:
+        testIP = "8.8.8.8"
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect((testIP, 0))
+        ipaddr = s.getsockname()[0]
+        host = socket.gethostname()
+        cpu = CPUTemperature()
+        blynk.virtual_write(5, str(ipaddr))
+        blynk.virtual_write(6, str(host))
+        blynk.virtual_write(7, "Temp CPU : " + str(cpu.temperature) + " C")
+        blynk.virtual_write(8, cpu.temperature)
+        print(cpu.temperature)
+        print ("IP:", ipaddr, " Host:", host)
+        tmr_start_time += 5
