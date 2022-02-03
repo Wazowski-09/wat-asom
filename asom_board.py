@@ -110,5 +110,3 @@ while True:
         print(cpu.temperature)
         print ("IP:", ipaddr, " Host:", host)
         tmr_start_time += 5
-        
-GPIO.cleanup()
