@@ -25,8 +25,9 @@ GPIO.setup(RELAIS_1_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
 GPIO.setup(RELAIS_2_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
 GPIO.setup(RELAIS_3_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
 
+BLYNK_AUTH = 'eYCqFwdwVKD81qKjL_8Lr0pM3vHQsMdc'
 # Initialize Blynk
-blynk = BlynkLib.Blynk('eYCqFwdwVKD81qKjL_8Lr0pM3vHQsMdc')
+blynk = BlynkLib.Blynk(BLYNK_AUTH)
 
 # Register Virtual Pins
 # @blynk.VIRTUAL_WRITE(1)
