@@ -25,7 +25,8 @@ GPIO.setup(RELAIS_1_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
 GPIO.setup(RELAIS_2_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
 GPIO.setup(RELAIS_3_GPIO, GPIO.OUT, initial = GPIO.LOW) # GPIO Assign mode
 
-BLYNK_AUTH = 'eYCqFwdwVKD81qKjL_8Lr0pM3vHQsMdc'
+# BLYNK_AUTH = 'eYCqFwdwVKD81qKjL_8Lr0pM3vHQsMdc'
+BLYNK_AUTH = 'vx2PmALZocpxYT76UWYegqcfLnqDnFCH'
 # Initialize Blynk
 blynk = BlynkLib.Blynk(BLYNK_AUTH)
 
