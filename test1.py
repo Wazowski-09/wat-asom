@@ -29,8 +29,14 @@ def my_write_handler(value):
   print('Current V1 value: {}'.format(value[0]))
   if int(format(value[0])) == 1:
     GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
+    blynk.virtual_write(16, 0)
+    blynk.virtual_write(15, 255)
+    print("relay1-work")
   else:
     GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
+    blynk.virtual_write(15, 0)
+    blynk.virtual_write(16, 255)
+    print("relay1-not-work")
 
 try:
     while True:
