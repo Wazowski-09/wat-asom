@@ -6,6 +6,8 @@ RELAIS_1_GPIO = 2
 RELAIS_2_GPIO = 3
 RELAIS_3_GPIO = 4
 
+GPIO.setwarnings(False)
+
 GPIO.setmode(GPIO.BCM)
 
 GPIO.setup(RELAIS_1_GPIO, GPIO.OUT)
