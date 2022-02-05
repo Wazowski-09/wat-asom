@@ -28,9 +28,9 @@ blynk = BlynkLib.Blynk(BLYNK_AUTH)
 def my_write_handler(value):
   print('Current V1 value: {}'.format(value[0]))
   if int(format(value[0])) == 1:
-    GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
+    GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
   else:
-    GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
+    GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
 
 try:
     while True:
