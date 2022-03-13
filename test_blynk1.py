@@ -12,7 +12,7 @@ def my_write_handler(value):
 @blynk.VIRTUAL_READ(2)
 def my_read_handler():
     # this widget will show some time in seconds..
-    blynk.virtual_write(2, int(time.time()))
+    blynk.virtual_write(2, "1")
 
 while True:
     blynk.run()
