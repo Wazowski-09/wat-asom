@@ -1,7 +1,7 @@
 import BlynkLib
 
 # Initialize Blynk
-blynk = BlynkLib.Blynk('YourAuthToken')
+blynk = BlynkLib.Blynk('GQNVXrn_3gXzL1F1Ca-efx9Dr_Alklmo')
 
 # Register Virtual Pins
 @blynk.VIRTUAL_WRITE(1)
