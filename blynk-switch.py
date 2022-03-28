@@ -16,7 +16,7 @@ RELAIS_3_GPIO = 12
 RELAIS_4_GPIO = 7
 
 inG = 8
-inR = 25
+inR = 24
 
 GPIO.setwarnings(False)
 GPIO.setup(RELAIS_2_GPIO, GPIO.OUT) # GPIO Assign mode
