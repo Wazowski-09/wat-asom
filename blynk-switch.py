@@ -31,14 +31,28 @@ GPIO.setup(inR, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_PIN_EVENT] Pin: V{} Value: '{}'"
 #WRITE_EVENT_PRINT_MSG = "Pin: V{} Value: '{}'"
 
-@blynk.handle_event('write V4')
+@blynk.handle_event('write V1')
 def write_virtual_pin_handler(pin, value):
     GPIO.output(RELAIS_2_GPIO, GPIO.HIGH) # out
     GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
+    GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
     #print(WRITE_EVENT_PRINT_MSG.format(pin, value))
     print("Pin: V{} Value: '{}'".format(pin, value))
     print(format(value[0]))
+    blynk.virtual_write(V0, 255)
+    blynk.virtual_write(V2, 0)
 
+@blynk.handle_event('write V3')
+def write_virtual_pin_handler(pin, value):
+    GPIO.output(RELAIS_2_GPIO, GPIO.LOW) # out
+    GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
+    GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
+    #print(WRITE_EVENT_PRINT_MSG.format(pin, value))
+    print("Pin: V{} Value: '{}'".format(pin, value))
+    print(format(value[0]))
+    blynk.virtual_write(V0, 0)
+    blynk.virtual_write(V2, 255)
+    
 while True:
     button_stateG = GPIO.input(inG)
     button_stateR = GPIO.input(inR)
