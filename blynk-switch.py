@@ -36,14 +36,14 @@ def write_virtual_pin_handler(pin, value):
     x = format(value[0])
     print("Pin: V{} Value: '{}'".format(pin, value))
     print(format(value[0]))
-    if x == 0:
+    if x == "0":
       GPIO.output(RELAIS_2_GPIO, GPIO.LOW) # out
       GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
       GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
       #print(WRITE_EVENT_PRINT_MSG.format(pin, value))
       blynk.virtual_write(V0, 0)
       blynk.virtual_write(V2, 255)
-    elif x == 1:
+    elif x == "1":
       GPIO.output(RELAIS_2_GPIO, GPIO.HIGH) # out
       GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
       GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
@@ -51,7 +51,7 @@ def write_virtual_pin_handler(pin, value):
       blynk.virtual_write(V0, 255)
       blynk.virtual_write(V2, 0)
 
-@blynk.handle_event('write V3')
+@blynk.handle_event('write V5')
 def write_virtual_pin_handler(pin, value):
     GPIO.output(RELAIS_2_GPIO, GPIO.LOW) # out
     GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
