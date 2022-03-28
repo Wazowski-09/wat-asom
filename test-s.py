@@ -2,7 +2,8 @@ import RPi.GPIO as GPIO
 from time import sleep
 GPIO.setmode(GPIO.BCM)
 
-pushpin = 25 # set input push button pin
+#pushpin = 25 # set input push button pin
+pushpin = 8
 
 GPIO.setup(pushpin, GPIO.IN, pull_up_down=GPIO.PUD_UP) # with pull up resistor
 
