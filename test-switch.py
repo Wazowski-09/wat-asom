@@ -24,12 +24,12 @@ while True:
     button_stateR = GPIO.input(inR)
     #print(button_stateG)
     #print(button_stateR)
-    if button_stateG == 1 and button_stateR == 0:
+    if button_stateG == 1:
       print("open")
       GPIO.output(RELAIS_2_GPIO, GPIO.LOW) # out
       GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
       GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
-    elif button_stateG == 0 and button_stateR == 1:
+    elif button_stateR == 1:
       print("close")
       GPIO.output(RELAIS_2_GPIO, GPIO.HIGH) # out
       GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
