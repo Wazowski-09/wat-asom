@@ -16,7 +16,8 @@ GPIO.setup(RELAIS_3_GPIO, GPIO.OUT)
 GPIO.setup(RELAIS_4_GPIO, GPIO.OUT)
 
  # set input push button pin
-GPIO.setup(pushpin, GPIO.IN, pull_up_down=GPIO.PUD_UP) # with pull up resistor
+GPIO.setup(inG, GPIO.IN, pull_up_down=GPIO.PUD_UP) # with pull up resistor
+GPIO.setup(inR, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 while True:
     button_stateG = GPIO.input(inG)
