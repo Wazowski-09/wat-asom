@@ -73,11 +73,11 @@ while True:
       GPIO.output(RELAIS_2_GPIO, GPIO.HIGH) # out
       GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
       GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
-      blynk.set_property(1, "onLabel, "ON")
+      blynk.set_property(1, "onLabel, #00FF00)
     elif button_stateR == 0 and button_stateG == 1:
       print("close")
       GPIO.output(RELAIS_2_GPIO, GPIO.LOW) # out
       GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
       GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
-      blynk.set_property(1, "offLabel, "OFF")
+      blynk.set_property(1, "offLabel, #FF00FF)
       
