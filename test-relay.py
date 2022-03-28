@@ -24,19 +24,19 @@ GPIO.setup(RELAIS_1_GPIO, GPIO.OUT) # GPIO Assign mode
 
 # Initial state for LEDs:
 print("Testing RF out, Press CTRL+C to exit")
+while True:
+    try:
+         print("set GIOP high")
+         GPIO.output(RELAIS_1_GPIO, GPIO.LOW) # out
+         time.sleep(1)
+         GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
+         time.sleep(1)             
+    except KeyboardInterrupt: # If CTRL+C is pressed, exit cleanly:
+       print("Keyboard interrupt")
 
-try:
-     print("set GIOP high")
-     GPIO.output(RELAIS_1_GPIO, GPIO.LOW) # out
-     time.sleep(1)
-     GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
-     time.sleep(1)             
-except KeyboardInterrupt: # If CTRL+C is pressed, exit cleanly:
-   print("Keyboard interrupt")
+    except:
+       print("some error") 
 
-except:
-   print("some error") 
-
-finally:
-   print("clean up") 
-   GPIO.cleanup() # cleanup all GPIO 
+    finally:
+       print("clean up") 
+       GPIO.cleanup() # cleanup all GPIO 
