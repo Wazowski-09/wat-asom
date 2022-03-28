@@ -18,6 +18,8 @@ import time
 GPIO.setmode(GPIO.BCM) # Broadcom pin-numbering scheme
 
 RELAIS_1_GPIO = 16
+
+GPIO.setwarnings(False)
 GPIO.setup(RELAIS_1_GPIO, GPIO.OUT) # GPIO Assign mode
 
 # Initial state for LEDs:
