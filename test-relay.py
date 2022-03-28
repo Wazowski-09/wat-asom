@@ -10,8 +10,8 @@ GPIO.setup(RELAIS_1_GPIO, GPIO.OUT) # GPIO Assign mode
 while True:
     GPIO.output(RELAIS_1_GPIO, GPIO.LOW) # out
     time.sleep(1)
-    GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
-    time.sleep(1)
+#    GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
+#    time.sleep(1)
 
 
 #import RPi.GPIO as GPIO
