@@ -48,8 +48,8 @@ def write_virtual_pin_handler(pin, value):
       GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
       GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
       #print(WRITE_EVENT_PRINT_MSG.format(pin, value))
-      blynk.virtual_write(V0, 255)
-      blynk.virtual_write(V2, 0)
+      blynk.virtual_write(0, 255)
+      blynk.virtual_write(2, 0)
 
 @blynk.handle_event('write V5')
 def write_virtual_pin_handler(pin, value):
@@ -59,8 +59,8 @@ def write_virtual_pin_handler(pin, value):
     #print(WRITE_EVENT_PRINT_MSG.format(pin, value))
     print("Pin: V{} Value: '{}'".format(pin, value))
     print(format(value[0]))
-    blynk.virtual_write(V0, 0)
-    blynk.virtual_write(V2, 255)
+    blynk.virtual_write(0, 0)
+    blynk.virtual_write(2, 255)
     
 while True:
     button_stateG = GPIO.input(inG)
