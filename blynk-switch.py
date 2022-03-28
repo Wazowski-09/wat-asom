@@ -63,6 +63,7 @@ def write_virtual_pin_handler(pin, value):
     blynk.virtual_write(2, 255)
     
 while True:
+    blynk.run()
     button_stateG = GPIO.input(inG)
     button_stateR = GPIO.input(inR)
     #print(button_stateG)
@@ -72,9 +73,11 @@ while True:
       GPIO.output(RELAIS_2_GPIO, GPIO.HIGH) # out
       GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
       GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
+      blynk.set_property(1, "onLabel, "ON")
     elif button_stateR == 0 and button_stateG == 1:
       print("close")
       GPIO.output(RELAIS_2_GPIO, GPIO.LOW) # out
       GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
       GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
-    blynk.run()
+      blynk.set_property(1, "offLabel, "OFF")
+      
