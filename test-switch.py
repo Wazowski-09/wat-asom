@@ -26,11 +26,11 @@ while True:
     #print(button_stateR)
     if button_stateG == 0 and button_stateR == 1:
       print("open")
-      GPIO.output(RELAIS_2_GPIO, GPIO.LOW) # out
-      GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
-      GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
-    elif button_stateR == 0 and button_stateG == 1:
-      print("close")
       GPIO.output(RELAIS_2_GPIO, GPIO.HIGH) # out
       GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
       GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
+    elif button_stateR == 0 and button_stateG == 1:
+      print("close")
+      GPIO.output(RELAIS_2_GPIO, GPIO.LOW) # out
+      GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
+      GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
