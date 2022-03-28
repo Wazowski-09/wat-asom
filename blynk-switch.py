@@ -28,10 +28,13 @@ GPIO.setup(inG, GPIO.IN, pull_up_down=GPIO.PUD_UP) # with pull up resistor
 GPIO.setup(inR, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 #blynk
-WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_PIN_EVENT] Pin: V{} Value: '{}'"
+#WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_PIN_EVENT] Pin: V{} Value: '{}'"
+WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_PIN] Pin: V{} Value: '{}'"
 
 @blynk.handle_event('write V4')
 def write_virtual_pin_handler(pin, value):
+    GPIO.output(RELAIS_2_GPIO, GPIO.HIGH) # out
+    GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
     print(WRITE_EVENT_PRINT_MSG.format(pin, value))
 
 while True:
