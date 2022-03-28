@@ -37,7 +37,7 @@ def write_virtual_pin_handler(pin, value):
     GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
     #print(WRITE_EVENT_PRINT_MSG.format(pin, value))
     print("Pin: V{} Value: '{}'".format(pin, value))
-    print(value)
+    print(format(value[0]))
 
 while True:
     button_stateG = GPIO.input(inG)
