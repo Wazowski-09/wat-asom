@@ -102,7 +102,6 @@ while True:
       GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
       GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
       blynk.virtual_write(1, 0)
-      global t
       t = 0
     if(t == 1):
       if time.time() - timer_a > 300:
