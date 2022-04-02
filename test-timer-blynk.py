@@ -8,9 +8,13 @@ blynk = blynklib.Blynk(BLYNK_AUTH)
 
 WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_PIN_EVENT] Pin: V{} Value: '{}'"
 
-timer_a = time.time()
 t = 0
 
+def timer():
+    timer_a = time.time()
+    global t
+    t = 1
+    
 # register handler for virtual pin V4 write event
 @blynk.handle_event('write V4')
 def write_virtual_pin_handler(pin, value):
@@ -26,8 +30,7 @@ def write_virtual_pin_handler(pin, value):
       print("close")
     elif x == "1":
       #print(WRITE_EVENT_PRINT_MSG.format(pin, value))
-      global t
-      t = 1
+      timer()
 
 while True:
     blynk.run()
