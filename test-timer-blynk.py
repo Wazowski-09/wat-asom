@@ -35,4 +35,6 @@ while True:
       if time.time() - timer_a > 10:
         timer_a = time.time()
         blynk.virtual_write(10, 0)
+        global t
+        t = 0
         print("close")
