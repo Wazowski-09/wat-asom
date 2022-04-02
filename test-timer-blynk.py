@@ -26,7 +26,8 @@ def write_virtual_pin_handler(pin, value):
       #print(WRITE_EVENT_PRINT_MSG.format(pin, value))
       print("open")
       timer_a = time.time()
-      if time.time() - timer_a > 300:
+      if time.time() - timer_a > 10:
+        print("start")
         timer_a = time.time()
         blynk.virtual_write(10, 0)
         print("close")
