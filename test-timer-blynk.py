@@ -35,6 +35,7 @@ def write_virtual_pin_handler(pin, value):
     if x == "0":
       #print(WRITE_EVENT_PRINT_MSG.format(pin, value))
       print("close")
+      t = 0
     elif x == "1":
       #print(WRITE_EVENT_PRINT_MSG.format(pin, value))
       timer()
