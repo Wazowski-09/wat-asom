@@ -20,6 +20,8 @@ RELAIS_4_GPIO = 7
 inG = 8
 inR = 24
 
+t = 0
+
 GPIO.setwarnings(False)
 GPIO.setup(RELAIS_2_GPIO, GPIO.OUT) # GPIO Assign mode
 GPIO.setup(RELAIS_3_GPIO, GPIO.OUT)
@@ -33,6 +35,24 @@ GPIO.setup(inR, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_PIN_EVENT] Pin: V{} Value: '{}'"
 #WRITE_EVENT_PRINT_MSG = "Pin: V{} Value: '{}'"
 
+def timer():
+    global timer_a
+    timer_a = time.time()
+    global t
+    t = 1
+
+def close_pump():
+    blynk.virtual_write(1, 0)
+    GPIO.output(RELAIS_2_GPIO, GPIO.LOW) # out
+    GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
+    GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
+
+def open_pump():
+    blynk.virtual_write(1, 1)
+    GPIO.output(RELAIS_2_GPIO, GPIO.HIGH) # out
+    GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
+    GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
+
 @blynk.handle_event('write V1')
 def write_virtual_pin_handler(pin, value):
     x = format(value[0])
@@ -43,15 +63,12 @@ def write_virtual_pin_handler(pin, value):
       GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
       GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
       #print(WRITE_EVENT_PRINT_MSG.format(pin, value))
-      blynk.virtual_write(0, 0)
-      blynk.virtual_write(2, 255)
     elif x == "1":
       GPIO.output(RELAIS_2_GPIO, GPIO.HIGH) # out
       GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
       GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
       #print(WRITE_EVENT_PRINT_MSG.format(pin, value))
-      blynk.virtual_write(0, 255)
-      blynk.virtual_write(2, 0)
+      timer()
 
 @blynk.handle_event('write V5')
 def write_virtual_pin_handler(pin, value):
@@ -82,4 +99,9 @@ while True:
       GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
       GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
       blynk.virtual_write(1, 0)
-      
+      if(t == 1):
+        if time.time() - timer_a > 300:
+          timer_a = time.time()
+          close_pump()
+          t = 0
+          print("close")
