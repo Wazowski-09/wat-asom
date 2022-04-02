@@ -14,12 +14,19 @@ def connect_handler():
 @blynk.handle_event('internal_rtc')
 def rtc_handler(rtc_data_list):
     hr_rtc_value = datetime.utcfromtimestamp(int(rtc_data_list[0])).strftime('%Y-%m-%d %H:%M:%S')
+    rtctime.var = rtc_data_list[0]
+    humantime.var = hr_rtc_value
     print('Raw RTC value from server: {}'.format(rtc_data_list[0]))
     print('Human readable RTC value: {}'.format(hr_rtc_value))
 
+rtime = rtctime.var
+htime = humantime.var
 
 ###########################################################
 # infinite loop that waits for event
 ###########################################################
 while True:
     blynk.run()
+    if rtctime.var - rtime > 20:
+        rtime = rtctime.var
+        print('20 seconds')
