@@ -63,6 +63,8 @@ def write_virtual_pin_handler(pin, value):
       GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
       GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
       #print(WRITE_EVENT_PRINT_MSG.format(pin, value))
+      global t  
+      t = 0
     elif x == "1":
       GPIO.output(RELAIS_2_GPIO, GPIO.HIGH) # out
       GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
@@ -93,15 +95,18 @@ while True:
       GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
       GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
       blynk.virtual_write(1, 1)
+      timer()
     elif button_stateR == 0 and button_stateG == 1:
       print("close")
       GPIO.output(RELAIS_2_GPIO, GPIO.LOW) # out
       GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
       GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
       blynk.virtual_write(1, 0)
-      if(t == 1):
-        if time.time() - timer_a > 300:
-          timer_a = time.time()
-          close_pump()
-          t = 0
-          print("close")
+      global t
+      t = 0
+    if(t == 1):
+      if time.time() - timer_a > 300:
+        timer_a = time.time()
+        close_pump()
+        t = 0
+        print("close")
