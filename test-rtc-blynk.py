@@ -19,14 +19,13 @@ def rtc_handler(rtc_data_list):
     print('Raw RTC value from server: {}'.format(rtc_data_list[0]))
     print('Human readable RTC value: {}'.format(hr_rtc_value))
 
-rtime = rtctime.var
-htime = humantime.var
-
 ###########################################################
 # infinite loop that waits for event
 ###########################################################
 while True:
     blynk.run()
+    rtime = rtctime.var
+    htime = humantime.var
     if rtctime.var - rtime > 20:
         rtime = rtctime.var
         print('20 seconds')
