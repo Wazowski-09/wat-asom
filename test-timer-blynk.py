@@ -1,26 +1,36 @@
 import blynklib
-import blynktimer
-import random
+import time
 
 BLYNK_AUTH = 'GQNVXrn_3gXzL1F1Ca-efx9Dr_Alklmo'
+
+# initialize Blynk
 blynk = blynklib.Blynk(BLYNK_AUTH)
 
-# create timers dispatcher instance
-timer = blynktimer.Timer()
-
-WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_WRITE] Pin: V{} Value: '{}'"
+WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_PIN_EVENT] Pin: V{} Value: '{}'"
 
 
-# Code below: register two timers for different pins with different intervals
-# run_once flag allows to run timers once or periodically
-@timer.register(vpin_num=8, interval=4, run_once=False)
-@timer.register(vpin_num=9, interval=7, run_once=False)
-def write_to_virtual_pin(vpin_num=1):
-    value = random.randint(0, 20)
-    print(WRITE_EVENT_PRINT_MSG.format(vpin_num, value))
-    blynk.virtual_write(vpin_num, value)
-
+# register handler for virtual pin V4 write event
+@blynk.handle_event('write V4')
+def write_virtual_pin_handler(pin, value):
+    print(WRITE_EVENT_PRINT_MSG.format(pin, value))
+    
+@blynk.handle_event('write V10')
+def write_virtual_pin_handler(pin, value):
+    x = format(value[0])
+    print("Pin: V{} Value: '{}'".format(pin, value))
+    print(format(value[0]))
+    if x == "0":
+      #print(WRITE_EVENT_PRINT_MSG.format(pin, value))
+      print("close")
+    elif x == "1":
+      #print(WRITE_EVENT_PRINT_MSG.format(pin, value))
+      print("open")
+      timer_a = time.time()
+      if time.time() - timer_a > 300:
+        timer_a = time.time()
+        blynk.virtual_write(0, 0)
+        blynk.virtual_write(2, 255)
+        
 
 while True:
     blynk.run()
-    timer.run()
