@@ -28,8 +28,8 @@ def write_virtual_pin_handler(pin, value):
       timer_a = time.time()
       if time.time() - timer_a > 300:
         timer_a = time.time()
-        blynk.virtual_write(0, 0)
-        blynk.virtual_write(2, 255)
+        blynk.virtual_write(1, 0)
+        print("close")
         
 
 while True:
