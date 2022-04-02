@@ -15,6 +15,12 @@ def timer():
     timer_a = time.time()
     global t
     t = 1
+
+def close_pump():
+    blynk.virtual_write(10, 0)
+
+def open_pump():
+    blynk.virtual_write(10, 1)
     
 # register handler for virtual pin V4 write event
 @blynk.handle_event('write V4')
@@ -38,6 +44,6 @@ while True:
     if(t == 1):
       if time.time() - timer_a > 10:
         timer_a = time.time()
-        blynk.virtual_write(10, 0)
+        close_pump()
         t = 0
         print("close")
