@@ -11,6 +11,7 @@ WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_PIN_EVENT] Pin: V{} Value: '{}'"
 t = 0
 
 def timer():
+    global timer_a
     timer_a = time.time()
     global t
     t = 1
