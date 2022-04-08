@@ -5,6 +5,7 @@ import time
 #relay
 GPIO.setmode(GPIO.BCM)
 
+RELAIS_1_GPIO = 23
 RELAIS_2_GPIO = 16
 RELAIS_3_GPIO = 12
 RELAIS_4_GPIO = 7
@@ -15,6 +16,7 @@ inR = 24
 t = 0
 
 GPIO.setwarnings(False)
+GPIO.setup(RELAIS_1_GPIO, GPIO.OUT)
 GPIO.setup(RELAIS_2_GPIO, GPIO.OUT) # GPIO Assign mode
 GPIO.setup(RELAIS_3_GPIO, GPIO.OUT)
 GPIO.setup(RELAIS_4_GPIO, GPIO.OUT)
@@ -34,11 +36,13 @@ def timer():
     t = 1
 
 def close_pump():
+    GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
     GPIO.output(RELAIS_2_GPIO, GPIO.LOW) # out
     GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
     GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
 
 def open_pump():
+    GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
     GPIO.output(RELAIS_2_GPIO, GPIO.HIGH) # out
     GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
     GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
@@ -50,12 +54,14 @@ while True:
     #print(button_stateR)
     if button_stateG == 0 and button_stateR == 1:
       print("open")
+      GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
       GPIO.output(RELAIS_2_GPIO, GPIO.HIGH) # out
       GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
       GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
       timer()
     elif button_stateR == 0 and button_stateG == 1:
       print("close")
+      GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
       GPIO.output(RELAIS_2_GPIO, GPIO.LOW) # out
       GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
       GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
