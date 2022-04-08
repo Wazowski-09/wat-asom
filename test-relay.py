@@ -14,12 +14,12 @@ GPIO.setup(RELAIS_3_GPIO, GPIO.OUT)
 GPIO.setup(RELAIS_4_GPIO, GPIO.OUT)
 
 while True:
-#    GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
+    GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
 #    GPIO.output(RELAIS_2_GPIO, GPIO.LOW) # out
 #    GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
 #    GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
 #    time.sleep(1)
-    GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
+#    GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
 #    GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
 #    GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
 #    GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
